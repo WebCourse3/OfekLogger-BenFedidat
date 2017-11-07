@@ -28,7 +28,10 @@ export class Logger {
         this.configuration = configuration;
     }
 
-    public log(level: LogLevel = this.configuration.logLevel, ...strings: string[]): void {
+    public log(level: LogLevel, ...strings: string[]): void {
+        if(!level) {
+            level = this.configuration.logLevel
+        }
         strings.forEach(string => this.print(string, level));
     }
 
