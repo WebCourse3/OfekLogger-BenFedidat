@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+
 import {LogLevel} from './LogLevel';
 import {MessagePrinterBuilder} from './MessagePrinterBuilder';
 

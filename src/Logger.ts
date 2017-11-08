@@ -1,3 +1,5 @@
+import {readFileSync} from 'fs';
+
 import {LogLevel} from './LogLevel';
 import {LogConfiguration} from './LogConfiguration';
 import {MessagePrinterBuilder} from './MessagePrinterBuilder';
@@ -6,17 +8,12 @@ import {MessagePrinter} from './MessagePrinter';
 export class Logger {
     messagePrinter: MessagePrinter;
 
-    constructor(name: string, configuration: LogConfiguration) {
+    constructor(name: string, configuration?: LogConfiguration) {
+        configuration = configuration ? configuration : JSON.parse(readFileSync('./config.json', 'utf8')) as LogConfiguration; 
         var builder = new MessagePrinterBuilder();
-        if(configuration.console) {
-            builder = builder.toConsole();
-        }
-        if(configuration.file) {
-            builder = builder.toFile();
-        }
-        if(configuration.colors) {
-            builder = builder.withColor();
-        }
+        builder = configuration.console ? builder : builder.toConsole();
+        builder = configuration.file ? builder : builder.toFile();
+        builder = configuration.colors ? builder : builder.withColor();
         builder = builder.defaultLogLevel(configuration.logLevel);
         this.messagePrinter = builder.build();
     }

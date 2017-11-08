@@ -5,7 +5,7 @@ import {Logger} from "./Logger";
 let loggerConfig: LogConfiguration, logger: Logger;
 
 loggerConfig = new LogConfiguration(true, true, true, LogLevel.Warning);
-logger = new Logger("appLogger", loggerConfig);
+logger = new Logger("appLogger");
 logger.log(LogLevel.Error, 'ColorError');
 logger.log(LogLevel.Info, 'ColorInfo');
 
