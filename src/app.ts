@@ -1,14 +1,15 @@
-import {LogLevel, LogConfigration, Logger} from "./logger";
+import {LogLevel} from "./LogLevel"; 
+import {LogConfiguration} from "./LogConfiguration";
+import {Logger} from "./Logger";
 
-let loggerConfig: LogConfigration, logger: Logger;
+let loggerConfig: LogConfiguration, logger: Logger;
 
-loggerConfig = new LogConfigration(true, true, true, LogLevel.Warning);
+loggerConfig = new LogConfiguration(true, true, true, LogLevel.Warning);
 logger = new Logger("appLogger", loggerConfig);
 logger.log(LogLevel.Error, 'ColorError');
 logger.log(LogLevel.Info, 'ColorInfo');
-logger.log('Colordefault');
 
-loggerConfig = new LogConfigration(true, false, false, LogLevel.Warning);
+loggerConfig = new LogConfiguration(true, false, false, LogLevel.Warning);
 logger = new Logger("appLogger", loggerConfig);
 logger.log(LogLevel.Error, 'Error');
 logger.log(LogLevel.Info, 'Info');
